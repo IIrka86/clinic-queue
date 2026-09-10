@@ -1,0 +1,27 @@
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java / Gradle (backend, /server)
+server/build/
+server/.gradle/
+server/out/
+*.class
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+
+# Node / Vite (frontend, /client)
+client/node_modules/
+client/dist/
+client/.vite/
+
+# Env / secrets
+.env
+.env.local
+*.local.yml
+*.local.yaml
