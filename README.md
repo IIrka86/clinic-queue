@@ -15,4 +15,27 @@ Portfolio project. Full spec: [`docs/clinic-queue-spec.md`](docs/clinic-queue-sp
 
 ## Running locally
 
-_Coming soon — instructions will be added once the backend and frontend projects are scaffolded._
+### Prerequisites
+
+- JDK 21
+- Node.js 20+
+- A running PostgreSQL instance with a `clinic_queue` database and a `clinic_queue_app` user, reachable on `localhost:5433` (adjust `server/src/main/resources/application.properties` if yours differs). Flyway manages the schema inside it on startup, but doesn't create the database/user themselves — create those first.
+
+### Backend
+
+```
+cd server
+DB_PASSWORD=<password> ./gradlew bootRun   # Windows PowerShell: $env:DB_PASSWORD="<password>"; .\gradlew.bat bootRun
+```
+
+Starts on `http://localhost:8080`; migrations under `server/src/main/resources/db/migration` apply automatically.
+
+### Frontend
+
+```
+cd client
+npm install
+npm run dev
+```
+
+Starts on `http://localhost:5173`. CORS on the backend is already configured to allow this origin.
