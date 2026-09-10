@@ -152,7 +152,15 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ---
 
-### Epic 1 — Auth and Roles
+### Epic 1 — Design System and Polish
+**Frontend**
+- [ ] Base components: Button, Card, Badge, TicketNumberDisplay, QueueList
+- [ ] Apply color scheme and typography app-wide
+- [ ] Responsiveness (public section — mobile-first, doctor/admin dashboards — desktop/tablet)
+
+---
+
+### Epic 2 — Auth and Roles
 **Backend**
 - [ ] User entity (username, passwordHash, role: DOCTOR/ADMIN), optional link to Doctor
 - [ ] Spring Security + JWT: `/api/auth/login`
@@ -165,7 +173,7 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ---
 
-### Epic 2 — Doctor + Ticket Model and Basic Queue
+### Epic 3 — Doctor + Ticket Model and Basic Queue
 **Backend**
 - [ ] Doctor, Ticket entities, status enums
 - [ ] `GET /api/doctors` (active only)
@@ -180,7 +188,7 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ---
 
-### Epic 3 — Real-time Queue (WebSocket)
+### Epic 4 — Real-time Queue (WebSocket)
 **Backend**
 - [ ] STOMP endpoint configuration, `/topic/queue/{doctorId}` topics
 - [ ] Publish `ticket_created`, `ticket_called`, `ticket_completed` events
@@ -192,7 +200,7 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ---
 
-### Epic 4 — Doctor Dashboard
+### Epic 5 — Doctor Dashboard
 **Backend**
 - [ ] `GET /api/doctor/queue` — doctor's queue for today
 
@@ -202,7 +210,7 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ---
 
-### Epic 5 — Admin Panel
+### Epic 6 — Admin Panel
 **Backend**
 - [ ] `/api/admin/doctors` CRUD, toggle active
 - [ ] `GET /api/admin/queues` — aggregated overview
@@ -212,14 +220,6 @@ One shared login form for doctor and admin — role is determined after login (s
 - [ ] Doctor management page (list, toggle, add)
 - [ ] Overview page for all queues
 - [ ] Manual-adjustment UI for a single ticket
-
----
-
-### Epic 6 — Design System and Polish
-**Frontend**
-- [ ] Base components: Button, Card, Badge, TicketNumberDisplay, QueueList
-- [ ] Apply color scheme and typography app-wide
-- [ ] Responsiveness (public section — mobile-first, doctor/admin dashboards — desktop/tablet)
 
 ---
 
