@@ -28,10 +28,15 @@ const MOCK_DOCTORS: Doctor[] = [
 
 function AdminDoctorsPage() {
   return (
-    <Box sx={{ maxWidth: 640, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 640, mx: 'auto', p: { xs: 2, sm: 3 } }}>
       <Stack
-        direction="row"
-        sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 2 }}
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 0 }}
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: { xs: 'stretch', sm: 'center' },
+          mb: 2,
+        }}
       >
         <Typography variant="h4">Doctors</Typography>
         <Button>Add doctor</Button>
@@ -39,7 +44,15 @@ function AdminDoctorsPage() {
       <Stack spacing={2}>
         {MOCK_DOCTORS.map((doctor) => (
           <Card key={doctor.id}>
-            <Stack direction="row" sx={{ justifyContent: 'space-between', alignItems: 'center' }}>
+            <Stack
+              direction="row"
+              sx={{
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                flexWrap: 'wrap',
+                rowGap: 1,
+              }}
+            >
               <Box>
                 <Typography sx={{ fontWeight: 600 }}>
                   {doctor.firstName} {doctor.lastName}

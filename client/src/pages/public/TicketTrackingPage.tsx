@@ -9,7 +9,7 @@ function TicketTrackingPage() {
   const { ticketId } = useParams()
 
   return (
-    <Box sx={{ maxWidth: 480, mx: 'auto', p: 3, textAlign: 'center' }}>
+    <Box sx={{ maxWidth: 480, mx: 'auto', p: { xs: 2, sm: 3 }, textAlign: 'center' }}>
       <Typography color="text.secondary">Ticket {ticketId}</Typography>
       <TicketNumberDisplay number={14} />
       <Stack direction="row" spacing={1} sx={{ justifyContent: 'center', my: 2 }}>

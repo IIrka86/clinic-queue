@@ -53,7 +53,7 @@ const MOCK_QUEUES: { doctorName: string; tickets: Ticket[] }[] = [
 
 function AdminQueuesPage() {
   return (
-    <Box sx={{ maxWidth: 720, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 720, mx: 'auto', p: { xs: 2, sm: 3 } }}>
       <Typography variant="h4" gutterBottom>
         All queues
       </Typography>

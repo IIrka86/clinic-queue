@@ -7,7 +7,7 @@ import Card from '../components/Card'
 
 function LoginPage() {
   return (
-    <Box sx={{ maxWidth: 360, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 360, mx: 'auto', p: { xs: 2, sm: 3 } }}>
       <Typography variant="h4" gutterBottom>
         Log in
       </Typography>

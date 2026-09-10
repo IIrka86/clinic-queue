@@ -30,7 +30,7 @@ function TakeTicketPage() {
   const [selectedId, setSelectedId] = useState<string | 'any' | null>(null)
 
   return (
-    <Box sx={{ maxWidth: 480, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 480, mx: 'auto', p: { xs: 2, sm: 3 } }}>
       <Typography variant="h4" gutterBottom>
         Take a ticket
       </Typography>

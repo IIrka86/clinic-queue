@@ -44,10 +44,15 @@ const MOCK_TICKETS: Ticket[] = [
 
 function DoctorDashboardPage() {
   return (
-    <Box sx={{ maxWidth: 720, mx: 'auto', p: 3 }}>
+    <Box sx={{ maxWidth: 720, mx: 'auto', p: { xs: 2, sm: 3 } }}>
       <Stack
-        direction="row"
-        sx={{ justifyContent: 'space-between', alignItems: 'center', mb: 2 }}
+        direction={{ xs: 'column', sm: 'row' }}
+        spacing={{ xs: 1, sm: 0 }}
+        sx={{
+          justifyContent: 'space-between',
+          alignItems: { xs: 'stretch', sm: 'center' },
+          mb: 2,
+        }}
       >
         <Typography variant="h4">Today's queue</Typography>
         <Button>Call next</Button>
