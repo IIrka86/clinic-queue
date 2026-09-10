@@ -1,0 +1,2 @@
+-- Baseline migration: Flyway is now managing schema history for this database.
+-- Real tables will be added starting from CLQ-20 (users) and CLQ-26 (doctors/tickets).
