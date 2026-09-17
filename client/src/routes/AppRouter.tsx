@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
+import ProtectedRoute from '../auth/ProtectedRoute'
 import AdminDoctorsPage from '../pages/admin/AdminDoctorsPage'
 import AdminQueuesPage from '../pages/admin/AdminQueuesPage'
 import DoctorDashboardPage from '../pages/doctor/DoctorDashboardPage'
@@ -13,9 +14,30 @@ function AppRouter() {
       <Route path="/" element={<TakeTicketPage />} />
       <Route path="/tickets/:ticketId" element={<TicketTrackingPage />} />
       <Route path="/login" element={<LoginPage />} />
-      <Route path="/doctor" element={<DoctorDashboardPage />} />
-      <Route path="/admin" element={<AdminQueuesPage />} />
-      <Route path="/admin/doctors" element={<AdminDoctorsPage />} />
+      <Route
+        path="/doctor"
+        element={
+          <ProtectedRoute allowedRoles={['DOCTOR']}>
+            <DoctorDashboardPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin"
+        element={
+          <ProtectedRoute allowedRoles={['ADMIN']}>
+            <AdminQueuesPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/admin/doctors"
+        element={
+          <ProtectedRoute allowedRoles={['ADMIN']}>
+            <AdminDoctorsPage />
+          </ProtectedRoute>
+        }
+      />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )

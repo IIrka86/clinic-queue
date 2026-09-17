@@ -136,40 +136,40 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ### Epic 0 — Infrastructure
 **Backend**
-- [ ] Initialize Spring Boot project (Gradle/Maven), modules: web, security, data-jpa, websocket
-- [ ] Set up the database (PostgreSQL/H2 to start), baseline migrations (Flyway/Liquibase)
-- [ ] Configure CORS and basic local-dev settings for the frontend
+- [x] Initialize Spring Boot project (Gradle/Maven), modules: web, security, data-jpa, websocket
+- [x] Set up the database (PostgreSQL/H2 to start), baseline migrations (Flyway/Liquibase)
+- [x] Configure CORS and basic local-dev settings for the frontend
 
 **Frontend**
-- [ ] Initialize React + TS project (Vite)
-- [ ] Set up routing (react-router), base folder structure
-- [ ] Wire up STOMP/SockJS client
+- [x] Initialize React + TS project (Vite)
+- [x] Set up routing (react-router), base folder structure
+- [x] Wire up STOMP/SockJS client
 
 **Shared**
-- [ ] Monorepo structure: `/server`, `/client`
-- [ ] `git init`, first commit, GitHub repository
-- [ ] README with project description and run instructions
+- [x] Monorepo structure: `/server`, `/client`
+- [x] `git init`, first commit, GitHub repository
+- [x] README with project description and run instructions
 
 ---
 
 ### Epic 1 — Design System and Polish
 **Frontend**
-- [ ] Base components: Button, Card, Badge, TicketNumberDisplay, QueueList
-- [ ] Apply color scheme and typography app-wide
-- [ ] Responsiveness (public section — mobile-first, doctor/admin dashboards — desktop/tablet)
+- [x] Base components: Button, Card, Badge, TicketNumberDisplay, QueueList
+- [x] Apply color scheme and typography app-wide
+- [x] Responsiveness (public section — mobile-first, doctor/admin dashboards — desktop/tablet)
 
 ---
 
 ### Epic 2 — Auth and Roles
 **Backend**
-- [ ] User entity (username, passwordHash, role: DOCTOR/ADMIN), optional link to Doctor
-- [ ] Spring Security + JWT: `/api/auth/login`
-- [ ] Role-based endpoint protection (`@PreAuthorize`)
+- [x] User entity (username, passwordHash, role: DOCTOR/ADMIN), optional link to Doctor
+- [x] Spring Security + JWT: `/api/auth/login`
+- [x] Role-based endpoint protection (`@PreAuthorize`)
 
 **Frontend**
-- [ ] Login form
-- [ ] Token storage, role-protected routes
-- [ ] Post-login redirect based on role (doctor/admin)
+- [x] Login form
+- [x] Token storage, role-protected routes
+- [x] Post-login redirect based on role (doctor/admin)
 
 ---
 
