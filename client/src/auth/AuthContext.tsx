@@ -5,7 +5,7 @@ import { clearToken, decodeToken, getStoredToken, saveToken } from './token'
 
 interface AuthContextValue {
   user: AuthUser | null
-  login: (token: string) => void
+  login: (token: string) => AuthUser | null
   logout: () => void
 }
 
@@ -19,7 +19,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   function login(token: string) {
     saveToken(token)
-    setUser(decodeToken(token))
+    const decoded = decodeToken(token)
+    setUser(decoded)
+    return decoded
   }
 
   function logout() {

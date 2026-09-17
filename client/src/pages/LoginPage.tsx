@@ -5,13 +5,21 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { login as requestLogin } from '../api/login'
 import { useAuth } from '../auth/AuthContext'
+import type { UserRole } from '../auth/token'
 import Button from '../components/Button'
 import Card from '../components/Card'
 
+const ROLE_HOME_PATH: Record<UserRole, string> = {
+  ADMIN: '/admin',
+  DOCTOR: '/doctor',
+}
+
 function LoginPage() {
   const { login } = useAuth()
+  const navigate = useNavigate()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -23,8 +31,8 @@ function LoginPage() {
     setIsSubmitting(true)
     try {
       const { token } = await requestLogin(username, password)
-      login(token)
-      // Role-based redirect is handled in CLQ-25.
+      const user = login(token)
+      navigate(user ? ROLE_HOME_PATH[user.role] : '/', { replace: true })
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
@@ -62,9 +70,6 @@ function LoginPage() {
           </Button>
         </Stack>
       </Card>
-      <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-        Role-based redirect comes in CLQ-25.
-      </Typography>
     </Box>
   )
 }
