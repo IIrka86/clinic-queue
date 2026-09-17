@@ -2,6 +2,7 @@ package io.github.iirka86.server.security;
 
 import io.github.iirka86.server.user.User;
 import io.github.iirka86.server.user.UserRepository;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +27,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Object> login(@RequestBody LoginRequest request){
+    public ResponseEntity<Object> login(@Valid @RequestBody LoginRequest request){
         Optional<User> user = userRepository.findByUsername(request.username());
 
         if(user.isEmpty()){
