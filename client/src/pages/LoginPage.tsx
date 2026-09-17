@@ -5,11 +5,13 @@ import TextField from '@mui/material/TextField'
 import Typography from '@mui/material/Typography'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { login as requestLogin } from '../api/login'
+import { useAuth } from '../auth/AuthContext'
 import Button from '../components/Button'
 import Card from '../components/Card'
-import { login } from '../api/login'
 
 function LoginPage() {
+  const { login } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -20,9 +22,9 @@ function LoginPage() {
     setError(null)
     setIsSubmitting(true)
     try {
-      const { token } = await login(username, password)
-      // Token storage and role-based redirect are handled in CLQ-24, CLQ-25.
-      console.log('Logged in, token:', token)
+      const { token } = await requestLogin(username, password)
+      login(token)
+      // Role-based redirect is handled in CLQ-25.
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
     } finally {
@@ -61,7 +63,7 @@ function LoginPage() {
         </Stack>
       </Card>
       <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-        Token storage and role-based redirect come in CLQ-24, CLQ-25.
+        Role-based redirect comes in CLQ-25.
       </Typography>
     </Box>
   )
