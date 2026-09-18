@@ -1,5 +1,5 @@
-import type { SelectionType } from '../types/domain'
-import { apiPost } from './client'
+import type { SelectionType, TicketStatus } from '../types/domain'
+import { apiGet, apiPost } from './client'
 
 export interface CreateTicketRequest {
   doctorId?: string
@@ -13,6 +13,18 @@ export interface CreateTicketResponse {
   number: number
 }
 
+export interface TicketStatusResponse {
+  id: string
+  number: number
+  doctorId: string
+  status: TicketStatus
+  queuePosition: number
+}
+
 export function createTicket(request: CreateTicketRequest): Promise<CreateTicketResponse> {
   return apiPost<CreateTicketResponse>('/api/tickets', request)
+}
+
+export function getTicketStatus(id: string): Promise<TicketStatusResponse> {
+  return apiGet<TicketStatusResponse>(`/api/tickets/${id}`)
 }
