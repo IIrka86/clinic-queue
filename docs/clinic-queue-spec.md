@@ -175,16 +175,16 @@ One shared login form for doctor and admin — role is determined after login (s
 
 ### Epic 3 — Doctor + Ticket Model and Basic Queue
 **Backend**
-- [ ] Doctor, Ticket entities, status enums
-- [ ] `GET /api/doctors` (active only)
-- [ ] `POST /api/tickets` — ticket creation, including "any available doctor" logic
-- [ ] `GET /api/tickets/{id}` — status and queue position
-- [ ] Daily numbering reset logic (scheduled job or computed on the fly by date)
+- [x] Doctor, Ticket entities, status enums
+- [x] `GET /api/doctors` (active only)
+- [x] `POST /api/tickets` — ticket creation, including "any available doctor" logic
+- [x] `GET /api/tickets/{id}` — status and queue position
+- [x] Daily numbering reset logic (scheduled job or computed on the fly by date)
 
 **Frontend**
-- [ ] Public doctor-selection page (specific / "any available")
-- [ ] Name + phone entry form
-- [ ] Ticket confirmation page with the assigned number
+- [x] Public doctor-selection page (specific / "any available")
+- [x] Name + phone entry form
+- [x] Ticket confirmation page with the assigned number
 
 ---
 
