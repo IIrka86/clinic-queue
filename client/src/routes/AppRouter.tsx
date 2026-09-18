@@ -5,6 +5,7 @@ import AdminQueuesPage from '../pages/admin/AdminQueuesPage'
 import DoctorDashboardPage from '../pages/doctor/DoctorDashboardPage'
 import LoginPage from '../pages/LoginPage'
 import NotFoundPage from '../pages/NotFoundPage'
+import PatientDetailsPage from '../pages/public/PatientDetailsPage'
 import TakeTicketPage from '../pages/public/TakeTicketPage'
 import TicketTrackingPage from '../pages/public/TicketTrackingPage'
 
@@ -12,6 +13,7 @@ function AppRouter() {
   return (
     <Routes>
       <Route path="/" element={<TakeTicketPage />} />
+      <Route path="/take-ticket/details" element={<PatientDetailsPage />} />
       <Route path="/tickets/:ticketId" element={<TicketTrackingPage />} />
       <Route path="/login" element={<LoginPage />} />
       <Route
