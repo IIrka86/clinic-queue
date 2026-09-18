@@ -66,12 +66,8 @@ public class TicketService {
     }
 
     private int nextTicketNumberForToday(Doctor doctor){
-        ZoneId zone = ZoneId.systemDefault();
-        LocalDate today = LocalDate.now(zone);
-        Instant startOfDay = today.atStartOfDay(zone).toInstant();
-        Instant endOfDay = today.plusDays(1).atStartOfDay(zone).toInstant();
-
-        return (int) ticketRepository.countByDoctorAndCreatedAtBetween(doctor, startOfDay, endOfDay) + 1;
+        DayBounds dayBounds = todayBounds();
+        return (int) ticketRepository.countByDoctorAndCreatedAtBetween(doctor, dayBounds.start(), dayBounds.end()) + 1;
     }
 
     public TicketStatusResponse getTicketStatus(UUID id){
@@ -81,9 +77,10 @@ public class TicketService {
         Doctor doctor = ticket.getDoctor();
         TicketStatus status = ticket.getStatus();
         int number = ticket.getNumber();
+        DayBounds dayBounds = todayBounds();
 
         int queuePosition = Math.toIntExact(status == TicketStatus.WAITING
-                ? ticketRepository.countByDoctorAndStatusAndNumberLessThan(doctor, status, number)
+                ? ticketRepository.countByDoctorAndStatusAndNumberLessThanAndCreatedAtBetween(doctor, status, number, dayBounds.start(), dayBounds.end())
                 : 0);
 
         return new TicketStatusResponse(
@@ -94,4 +91,14 @@ public class TicketService {
                 queuePosition
         );
     }
+
+    private DayBounds todayBounds() {
+        ZoneId zone = ZoneId.systemDefault();
+        LocalDate today = LocalDate.now(zone);
+        return new DayBounds(
+                today.atStartOfDay(zone).toInstant(),
+                today.plusDays(1).atStartOfDay(zone).toInstant()
+        );
+    }
+
 }
