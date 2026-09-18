@@ -13,4 +13,6 @@ public interface TicketRepository extends JpaRepository<Ticket, UUID> {
     long countByDoctorAndStatus(Doctor doctor, TicketStatus status);
 
     long countByDoctorAndCreatedAtBetween(Doctor doctor, Instant start, Instant end);
+
+    long countByDoctorAndStatusAndNumberLessThan(Doctor doctor, TicketStatus status, int number);
 }

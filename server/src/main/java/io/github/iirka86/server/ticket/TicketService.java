@@ -12,6 +12,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Comparator;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class TicketService {
@@ -71,5 +72,26 @@ public class TicketService {
         Instant endOfDay = today.plusDays(1).atStartOfDay(zone).toInstant();
 
         return (int) ticketRepository.countByDoctorAndCreatedAtBetween(doctor, startOfDay, endOfDay) + 1;
+    }
+
+    public TicketStatusResponse getTicketStatus(UUID id){
+        Ticket ticket = ticketRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Ticket not found"));
+
+        Doctor doctor = ticket.getDoctor();
+        TicketStatus status = ticket.getStatus();
+        int number = ticket.getNumber();
+
+        int queuePosition = Math.toIntExact(status == TicketStatus.WAITING
+                ? ticketRepository.countByDoctorAndStatusAndNumberLessThan(doctor, status, number)
+                : 0);
+
+        return new TicketStatusResponse(
+                ticket.getId(),
+                number,
+                doctor.getId(),
+                status,
+                queuePosition
+        );
     }
 }
