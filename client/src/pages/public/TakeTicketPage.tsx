@@ -4,12 +4,14 @@ import CircularProgress from '@mui/material/CircularProgress'
 import Stack from '@mui/material/Stack'
 import Typography from '@mui/material/Typography'
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getDoctors } from '../../api/doctors'
 import Button from '../../components/Button'
 import Card from '../../components/Card'
 import type { Doctor } from '../../types/domain'
 
 function TakeTicketPage() {
+  const navigate = useNavigate()
   const [doctors, setDoctors] = useState<Doctor[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -33,6 +35,17 @@ function TakeTicketPage() {
       cancelled = true
     }
   }, [])
+
+  function handleContinue() {
+    if (!selectedId) return
+
+    navigate('/take-ticket/details', {
+      state:
+        selectedId === 'any'
+          ? { selectionType: 'ANY' }
+          : { selectionType: 'SPECIFIC', doctorId: selectedId },
+    })
+  }
 
   return (
     <Box sx={{ maxWidth: 480, mx: 'auto', p: { xs: 2, sm: 3 } }}>
@@ -72,12 +85,9 @@ function TakeTicketPage() {
           ))}
         </Stack>
       )}
-      <Button fullWidth disabled={!selectedId} sx={{ mt: 3 }}>
+      <Button fullWidth disabled={!selectedId} sx={{ mt: 3 }} onClick={handleContinue}>
         Continue
       </Button>
-      <Typography variant="caption" color="text.secondary" sx={{ mt: 1, display: 'block' }}>
-        Name + phone form comes in CLQ-32.
-      </Typography>
     </Box>
   )
 }
