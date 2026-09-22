@@ -1,2 +1,12 @@
 GitHub profile ownership verification
 Date: 2026-09-22
+
+Note for reviewers:
+This repository is a work-in-progress portfolio project. I have solid
+commercial experience as a frontend developer, but hadn't had much time
+to build a public portfolio until now. While job-hunting, I'm using this
+project to round out my profile: the frontend (React/TypeScript) is
+written by Claude Code, while the backend (Java/Spring Boot) I write by
+hand myself, with Claude Code guiding me through the concepts — frontend
+is already my strong suit, and I wanted genuine, hands-on backend
+experience to honestly list on my CV.
